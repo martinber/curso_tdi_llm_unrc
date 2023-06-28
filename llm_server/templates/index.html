@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Gugel: Tu página web</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<link href="https://fonts.googleapis.com/css?family=Lato:300i,400,700&display=swap" rel="stylesheet">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="{{ url_for('static', filename='normalize.css') }}">
+		<link rel="stylesheet" href="{{ url_for('static', filename='simple.css') }}">
+	</head>
+	<body>
+		<header>
+            <h1>Gugel</h1>
+            <p>Tu pagina web</p>
+		</header>
+		<main>
+			<h2>Las noticias de hoy</h2>
+            <pre>{{ news }}</pre>
+            <form action="" method="post" class="form-example">
+                <div class="form-example">
+                    <label for="name">Ingresa tu nombre: </label>
+                    <input type="text" name="name" id="name">
+                    <br>
+                    <input type="checkbox" id="cordobes" name="cordobes">
+                    <label for="cordobes">Hablame en cordobes</label>
+                    <br>
+                    <input type="checkbox" id="ingles" name="ingles">
+                    <label for="ingles">Reply in english</label>
+                    <br>
+                </div>
+                <div class="form-example">
+                    <input type="submit" value="Resumir noticias de hoy">
+                </div>
+            </form>
+			<h2>La foto de hoy</h2>
+            <img alt="Hola"
+                 src="{{ image or url_for('static', filename='hello.jpg') }}">
+		</main>
+	</body>
+</html>
