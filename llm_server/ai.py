@@ -33,34 +33,16 @@ def get_news():
 def run_dalle(api_key, message):
     """Le envia una peticion a DALL-E y devuelve la URL con la imagen a descargar"""
 
-    response = requests.post(
-        'https://api.openai.com/v1/images/generations',
-        headers={
-            "Content-Type": "application/json",
-            "Authorization": f"Bearer {api_key}",
-        },
-        json={
-            "prompt": message,
-            "n": 1,
-            "size": "1024x1024",
-        },
-    )
+    # [HACER] que se llame a la API de DALL-E. La URL de la imagen está en la respuesta:
+    # return response.json()["data"][0]["url"]
 
-    print("========== Respuesta de la API: =============")
-    print(response.json())
-
-    return response.json()["data"][0]["url"]
+    return "https://www.ing.unrc.edu.ar/imagenes/logo_ing_unrc_gris80x135.png"
 
 
 def run_chatgpt(api_key, message, cordobes=False, ingles=False):
     """Le envia un mensaje a ChatGPT mediante la API Web y devuelve la respuesta"""
 
-    if cordobes:
-        system_prompt = "Por favor responder con acento cordobes"
-    elif ingles:
-        system_prompt = "Please reply in English"
-    else:
-        system_prompt = "Responder de una manera formal"
+    # [HACER] que se pueda pedir una respuesta en cordobes o ingles
 
     response = requests.post(
         'https://api.openai.com/v1/chat/completions',
@@ -72,7 +54,7 @@ def run_chatgpt(api_key, message, cordobes=False, ingles=False):
             "model": "gpt-3.5-turbo",
             "messages": [
                 {"role": "user", "content": message},
-                {"role": "system", "content": system_prompt},
+                {"role": "system", "content": "Responder de una manera formal"},
             ],
             "temperature": 0.7,
         },
@@ -104,8 +86,9 @@ if __name__ == "__main__":
         api_key = file.readline().strip()
 
     message = "Name 4 colors"
+    response = "Modificar el codigo acá para llamar alguna AI [HACER]"
     # response = run_chatgpt(api_key, message)
-    response = run_gpt4all(message)
+    # response = run_gpt4all(message)
     # response = run_dalle(api_key, message)
 
     print("========== Nuestro mensaje es: =============")

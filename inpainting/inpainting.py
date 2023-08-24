@@ -32,8 +32,8 @@ def open_image(filename):
 
 def laplacian(img):
     """Laplaciano de una imagen: Δ"""
-    # Escribir la función acá
-    return divergence(grad_x(img), grad_y(img))  # BORRAR
+    # [HACER] Escribir la función acá para devolver el laplaciano en vez de img
+    return img
 
 
 # Cargar imagen y hacer una copia
@@ -44,12 +44,11 @@ img = img_original.copy()
 # Inicio de nuestro impainting
 
 mask = img
-mask = 1 - threshold(img, 1)  # BORRAR
 
-for i in range(50):  # BORRAR
+# [HACER] Modificar mask para que tenga 1 en todos lados menos en donde está el texto
 
-    img_new = img + 0.5 * (2 * (img_original - img) * mask + laplacian(img))  # BORRAR
-    img = img_new  # BORRAR
+# [HACER] Hacer un for loop que de 50 vueltas y que adentro tenga la ecuación
+# [HACER] Usar lambda = 2 y alfa = 0.5
 
 # Mostrar imagenes:
 
